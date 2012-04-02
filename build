@@ -1,16 +1,19 @@
 #!/bin/sh
 
+DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 ## Configuration
-logo=assets/logo.png
+logo=$DIR/assets/logo.png
 
 hmargin=3cm
 vmargin=3.5cm
 
-rm README.pdf
-rm output/*.png
+rm $2
 
-java -jar bin/plantuml.jar -o output README.md
+java -jar $DIR/bin/plantuml.jar -o output $1
 
-pandoc -t json README.md | bin/parse_plantuml | pandoc -f json -N -V fontsize=12pt -V logo=$logo --template=mytemplate.tex --latex-engine=xelatex --highlight-style pygments --toc -o README.pdf
+pandoc -t json $1 | $DIR/bin/parse_plantuml $1 | pandoc -f json -N -V fontsize=12pt -V logo=$logo --template=$DIR/mytemplate.tex --latex-engine=xelatex --highlight-style pygments --toc -o $2
 
-open README.pdf
+rm -rf output
+
+open $2

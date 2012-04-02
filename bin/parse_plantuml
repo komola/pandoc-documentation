@@ -1,4 +1,8 @@
 #!/usr/bin/env coffee
+filename = process.argv[2].split(".")
+filename.pop()
+filename = filename.join(".")
+
 pipeData = ""
 
 process.stdin.resume()
@@ -12,7 +16,7 @@ process.stdin.on "end", ->
 imageCounter = 0
 
 makeFileName = ->
-  filebase = "README"
+  filebase = filename
   extension = "png"
 
   if imageCounter == 0
