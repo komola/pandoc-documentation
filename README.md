@@ -9,7 +9,7 @@ and readable markdown and it will turn your file into a nice PDF.
 Features included:
 
 * Use Markdown to write your documentation
-* Create sequence diagrams using [plantUML](http://plantuml.sourcefourge.net)
+* Create sequence diagrams using [plantUML](http://plantuml.sourceforge.net/)
 * Create PDFs
 
 # Getting started
@@ -48,10 +48,6 @@ You can easily include sequence diagrams using PlantUML:
     Alice -> Bob: Another authentication Request
     Alice <-- Bob: another authentication Response
     @enduml
-
-![This is the description shown in the listings view2](output/README.png)
-
-And this is pretty cool, huh?
 
 ## Tables
 
