@@ -23,14 +23,27 @@ There are builds available for Windows, Mac and Linux.
   - Make sure, you have GraphVIZ installed (a requirement by plantuml)
 * Install a Tex package (on OSX, [MacTex](http://www.tug.org/mactex/2011/) is a good
 solution)
+* Make sure you have Coffee Script installed. Right now this is used for parsing the plantuml when converting to PDFs.
 
 Once you are done installing all the packages, you can start using the Pandoc
 Documentation writer like this:
 
     ./build README.md README.pdf
 
-Skip to [definitions](#references).
+# Todo
 
+* Don't use CoffeeScript but Haskell to parse the plantuml
+* Make sure plantuml graphics are scaled correct
+
+# Participating
+
+When you want to participate in pandoc-documentation, feel free to
+fork this repository.
+
+Make sure, that you add your changes on a named branch. **No pull
+request will be accepted for master branch changes**.
+
+Check the TODO items in this readme for ideas on what to implement.
 
 # Example formattings
 
@@ -56,9 +69,3 @@ First column    Second column  Third column
 Asd             Foo            Bar
 Asd             lalala         Bar
 Asd             Foo            Bar
-
-## References
-
-You can easily jump to `definitions` within a document.
-
-Just take a look at this [link](definition).
