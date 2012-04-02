@@ -1,0 +1,17 @@
+#!/bin/sh
+
+## Configuration
+logo=assets/logo.png
+
+hmargin=3cm
+vmargin=3.5cm
+
+rm README.pdf
+
+rm *.png
+
+java -jar /usr/share/java/plantuml.jar README.md
+
+pandoc -N -V fontsize=12pt -V logo=$logo --template=mytemplate.tex --latex-engine=xelatex --highlight-style pygments --toc -f markdown -o README.pdf README.md
+
+open README.pdf

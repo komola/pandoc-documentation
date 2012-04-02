@@ -1,0 +1,96 @@
+\documentclass[onecolumn,$fontsize$]{article}
+\usepackage[portrait,paper=a4paper,hmargin=3cm,vmargin=3.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{ifxetex}
+\usepackage{fancyvrb}
+\usepackage{enumerate}
+\usepackage{ctable}
+\usepackage{float}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{listings}
+% \usepackage[breaklinks=true,linktocpage,pdftitle={$title$},pdfauthor={$for(author)$$author$$sep$; $endfor$},xetex,colorlinks]{hyperref}
+
+\usepackage[colorlinks,pdfpagelabels,pdfstartview = FitH,bookmarksopen = true,bookmarksnumbered = true,linkcolor = black,plainpages = false,hypertexnames = false,citecolor = black] {hyperref}
+
+\hypersetup{colorlinks,%
+citecolor=blue,%
+filecolor=blue,%
+linkcolor=blue,%
+urlcolor=blue,%
+pdftex}
+
+
+\ifxetex
+  \usepackage{fontspec,xltxtra,xunicode}
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \setromanfont{Arial}
+  \setsansfont{Arial}
+  \setmonofont{Consolas}
+\else
+  \usepackage[mathletters]{ucs}
+  \usepackage[utf8x]{inputenc}
+\fi
+
+\pagestyle{fancy}
+\pagenumbering{arabic}
+
+\lhead{\itshape $title$}
+\chead{}
+\rhead{\itshape{\nouppercase{\leftmark}}}
+
+% \lfoot{v $version$}
+\lfoot{$for(author)$$author$$sep$\\$endfor$}
+\cfoot{}
+\rfoot{\thepage}
+
+\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+
+% This is needed because raggedright in table elements redefines \\:
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\let\PBS=\PreserveBackslash
+\usepackage[normalem]{ulem}
+\newcommand{\textsubscr}[1]{\ensuremath{_{\scriptsize\textrm{#1}}}}
+
+$if(numbersections)$
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+\VerbatimFootnotes % allows verbatim text in footnotes
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+$if(title)$
+\title{$title$}
+$endif$
+\author{$for(author)$$author$$sep$\\$endfor$}
+$if(date)$
+\date{$date$}
+$endif$
+
+\begin{document}
+$if(title)$
+\maketitle
+$if(logo)$
+\begin{center}
+\includegraphics[width=60mm]{$logo$}
+\end{center}
+$endif$
+\newpage
+$endif$
+
+$if(toc)$
+\tableofcontents
+\newpage
+
+$endif$
+
+$body$
+
+\end{document}
