@@ -1,0 +1,59 @@
+#!/usr/bin/env coffee
+pipeData = ""
+
+process.stdin.resume()
+process.stdin.on "data", (data) ->
+  pipeData += data
+
+process.stdin.on "end", ->
+  parsePlantUml pipeData
+
+# Parse plantuml stuff
+imageCounter = 0
+
+makeFileName = ->
+  filebase = "README"
+  extension = "png"
+
+  if imageCounter == 0
+    filename = filebase+"."+extension
+    imageCounter++
+
+  else
+    filename = filebase+"_00"+ (imageCounter) + ".png"
+    imageCounter++
+
+  filename
+
+parsePlantUml = (data) ->
+  try
+    data = JSON.parse(data);
+
+    for index, elm of data[1] when elm.CodeBlock?
+      code = elm.CodeBlock[1]
+
+      if code.indexOf("@startuml") isnt -1
+        description = []
+
+        if code.indexOf("@startuml") > 0
+          # We probably have a description for the image
+          descriptionCombined = code.split("\n")[0]
+
+          for a in descriptionCombined.split(" ")
+            description.push {"Str": a}
+            description.push "Space"
+
+        imageBlock = {
+          Para: [
+            {
+              Image: [description, ["output/"+makeFileName(), ""]]
+            }
+          ]
+        }
+
+        data[1][index] = imageBlock
+
+    process.stdout.write JSON.stringify data
+
+  catch e
+    process.stderr.write data
