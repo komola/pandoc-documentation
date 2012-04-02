@@ -1,6 +1,17 @@
 % Pandoc Documentation writer
 % komola UG, Sebastian Hoitz
 
+# About pandoc-documentation
+
+`Pandoc-documentation` can be used as a documentation toolchain. You can write nice
+and readable markdown and it will turn your file into a nice PDF.
+
+Features included:
+
+* Use Markdown to write your documentation
+* Create sequence diagrams using [plantUML](http://plantuml.sourcefourge.net)
+* Create PDFs
+
 # Getting started
 
 To get the pandoc documentation package to work, you have to install
